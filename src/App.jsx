@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import logoKizombaUrban from "../kizomba-urban-logo.png";
-import kizombaLoop from "../kizomba-loop.mp3";
+import kizombaLoop from "../kizomba-loop-v2.mp3";
 
 const PACKS = [
   {
