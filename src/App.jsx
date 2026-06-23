@@ -141,7 +141,12 @@ const QUESTIONS = [
     id: 7,
     category: "tarraxo",
     question: "Le Tarraxo met souvent en avant…",
-    options: ["Le contrôle du corps", "Les grands sauts", "La vitesse maximale", "Les figures acrobatiques"],
+    options: [
+      "Le contrôle du corps",
+      "Les grands sauts",
+      "La vitesse maximale",
+      "Les figures acrobatiques"
+    ],
     answer: 0,
     fact: "Le Tarraxo met souvent l’accent sur le contrôle, l’intensité, les isolations et le rapport au rythme.",
     card: {
@@ -226,7 +231,12 @@ const QUESTIONS = [
     id: 12,
     category: "culture",
     question: "Un bon danseur musical cherche surtout à…",
-    options: ["Interpréter la musique", "Faire le maximum de figures", "Aller le plus vite possible", "Ignorer les pauses"],
+    options: [
+      "Interpréter la musique",
+      "Faire le maximum de figures",
+      "Aller le plus vite possible",
+      "Ignorer les pauses"
+    ],
     answer: 0,
     fact: "La musicalité permet de danser avec la musique au lieu de simplement enchaîner des mouvements.",
     card: {
@@ -298,10 +308,13 @@ export default function App() {
 
   useEffect(() => {
     if (!audioRef.current) return;
+
     audioRef.current.volume = 0.22;
 
     if (soundOn) {
-      audioRef.current.play().catch(() => {});
+      audioRef.current.play().catch(() => {
+        setSoundOn(false);
+      });
     } else {
       audioRef.current.pause();
     }
@@ -317,9 +330,10 @@ export default function App() {
       setTimeLeft((value) => {
         if (value <= 1) {
           clearInterval(timerRef.current);
-          handleAnswer(null);
+          answerQuestion(null);
           return 0;
         }
+
         return value - 2;
       });
     }, 180);
@@ -532,7 +546,7 @@ function HomeScreen({ activePack, setActivePack, startQuiz, cards, soundOn }) {
           ▶ Commencer le quiz
         </button>
 
-        <button className="ghost-btn" onClick={() => setActivePack(PACKS[0])}>
+        <button className="ghost-btn" onClick={() => setScreenNotUsed()}>
           Pack actif : {activePack.emoji} {activePack.name}
         </button>
 
@@ -544,7 +558,11 @@ function HomeScreen({ activePack, setActivePack, startQuiz, cards, soundOn }) {
       <section className="quick-stats">
         <MiniCard icon="🏆" title="Quiz" text="Défis rapides" />
         <MiniCard icon="🔥" title="Culture" text="Cartes à débloquer" />
-        <MiniCard icon="⭐" title="Progression" text={`${cards.length} carte${cards.length > 1 ? "s" : ""}`} />
+        <MiniCard
+          icon="⭐"
+          title="Progression"
+          text={`${cards.length} carte${cards.length > 1 ? "s" : ""}`}
+        />
       </section>
 
       <section className="pack-preview">
@@ -571,6 +589,10 @@ function HomeScreen({ activePack, setActivePack, startQuiz, cards, soundOn }) {
   );
 }
 
+function setScreenNotUsed() {
+  return null;
+}
+
 function PacksScreen({ activePack, setActivePack, startQuiz }) {
   return (
     <main className="screen packs-screen">
@@ -589,6 +611,7 @@ function PacksScreen({ activePack, setActivePack, startQuiz }) {
             style={{ "--pack-color": pack.color }}
           >
             <div className="pack-icon">{pack.emoji}</div>
+
             <div>
               <small>{pack.subtitle}</small>
               <h2>{pack.name}</h2>
@@ -624,7 +647,10 @@ function QuizScreen({
         <span style={{ color: activePack.color }}>
           {activePack.emoji} {activePack.name}
         </span>
-        <b>{questionIndex + 1} / {totalQuestions}</b>
+
+        <b>
+          {questionIndex + 1} / {totalQuestions}
+        </b>
       </div>
 
       <div className="timer">
@@ -632,7 +658,10 @@ function QuizScreen({
       </div>
 
       <div className="session-score">
-        <span>Score : <b>{sessionScore}</b></span>
+        <span>
+          Score : <b>{sessionScore}</b>
+        </span>
+
         {streak >= 2 && !locked && <span>🔥 Série x{streak}</span>}
       </div>
 
@@ -668,11 +697,13 @@ function QuizScreen({
       {locked && (
         <section className="fact-card">
           <small>{selectedAnswer === question.answer ? "Bonne réponse" : "À retenir"}</small>
+
           <p>{question.fact}</p>
 
           {selectedAnswer === question.answer && question.card && (
             <div className="unlocked-card">
               <div>{question.card.icon}</div>
+
               <div>
                 <small>Carte débloquée</small>
                 <strong>{question.card.title}</strong>
@@ -698,23 +729,45 @@ function ResultsScreen({ sessionScore, results, totalQuestions, startQuiz, goHom
   return (
     <main className="screen results-screen">
       <div className="trophy">🏆</div>
+
       <h1>Session terminée</h1>
+
       <div className="big-score">+{sessionScore} XP</div>
-      <p>{correct} bonne{correct > 1 ? "s" : ""} réponse{correct > 1 ? "s" : ""} sur {totalQuestions}</p>
+
+      <p className="result-text">
+        {correct} bonne{correct > 1 ? "s" : ""} réponse{correct > 1 ? "s" : ""} sur{" "}
+        {totalQuestions}
+      </p>
 
       <div className="stats">
         <div>
           <strong>{percent}%</strong>
           <small>Réussite</small>
         </div>
+
         <div>
           <strong>{wonCards}</strong>
           <small>Cartes gagnées</small>
         </div>
       </div>
 
-      <button className="primary-btn" onClick={startQuiz}>Rejouer</button>
-      <button className="secondary-btn" onClick={goHome}>Retour accueil</button>
+      <section className="result-list">
+        {results.map((item, index) => (
+          <div key={`${item.id}-${index}`} className="result-item">
+            <span>{item.correct ? "✅" : "❌"}</span>
+            <p>{item.question}</p>
+            <b>+{item.points}</b>
+          </div>
+        ))}
+      </section>
+
+      <button className="primary-btn" onClick={startQuiz}>
+        Rejouer
+      </button>
+
+      <button className="secondary-btn" onClick={goHome}>
+        Retour accueil
+      </button>
     </main>
   );
 }
