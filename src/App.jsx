@@ -54,7 +54,7 @@ const QUESTIONS = [
     question: "Quel pays est souvent présenté comme le berceau de la Kizomba ?",
     options: ["Angola", "Cuba", "Brésil", "Jamaïque"],
     answer: 0,
-    fact: "La Kizomba est fortement associée à l’Angola, notamment à Luanda, avec des influences du Semba et du Zouk.",
+    fact: "La Kizomba est fortement associée à l’Angola, avec des influences du Semba et du Zouk.",
     card: {
       icon: "🇦🇴",
       title: "Angola",
@@ -308,7 +308,7 @@ export default function App() {
 
   useEffect(() => {
     if (!audioRef.current) return;
-    audioRef.current.volume = 0.9;
+    audioRef.current.volume = 1;
   }, []);
 
   useEffect(() => {
@@ -406,12 +406,13 @@ export default function App() {
     const audio = audioRef.current;
 
     if (!audio) {
-      alert("Audio introuvable dans l’application.");
+      alert("Audio introuvable.");
       return;
     }
 
     try {
-      audio.volume = 0.9;
+      audio.volume = 1;
+      audio.muted = false;
 
       if (soundOn) {
         audio.pause();
@@ -424,28 +425,12 @@ export default function App() {
     } catch (error) {
       console.error("Erreur audio :", error);
       setSoundOn(false);
-      alert("Le son n’a pas pu démarrer. Teste d’abord le lecteur audio visible dans l’app.");
+      alert("Le son n’a pas pu démarrer. Essaie le lecteur audio visible juste sous l’en-tête.");
     }
   }
 
   return (
     <div className={`app-shell ${soundOn ? "sound-on" : ""}`}>
-      <audio
-        ref={audioRef}
-        src="/kizomba-loop-v3.mp3"
-        loop
-        preload="auto"
-        controls
-        playsInline
-        style={{
-          width: "92%",
-          margin: "12px auto",
-          display: "block",
-          position: "relative",
-          zIndex: 999
-        }}
-      />
-
       <div className="ambient ambient-one" />
       <div className="ambient ambient-two" />
       <div className="stars" />
@@ -459,6 +444,61 @@ export default function App() {
           soundOn={soundOn}
           toggleSound={toggleSound}
         />
+
+        <section
+          style={{
+            position: "relative",
+            zIndex: 999,
+            margin: "12px 18px",
+            padding: "14px",
+            borderRadius: "18px",
+            background: "rgba(18, 12, 31, 0.95)",
+            border: "1px solid rgba(245, 200, 66, 0.25)"
+          }}
+        >
+          <p
+            style={{
+              margin: "0 0 8px",
+              color: "#ffe27a",
+              fontWeight: 800,
+              fontSize: "13px"
+            }}
+          >
+            Test audio direct
+          </p>
+
+          <audio
+            ref={audioRef}
+            src="/kizomba-loop-v3.mp3"
+            loop
+            preload="auto"
+            controls
+            playsInline
+            onPlay={() => setSoundOn(true)}
+            onPause={() => setSoundOn(false)}
+            style={{
+              width: "100%",
+              display: "block"
+            }}
+          />
+
+          <button
+            onClick={toggleSound}
+            style={{
+              width: "100%",
+              marginTop: "10px",
+              padding: "13px",
+              borderRadius: "16px",
+              border: "0",
+              background: "linear-gradient(135deg, #fff0a3, #f5c842, #d99018)",
+              color: "#171003",
+              fontWeight: 900,
+              fontSize: "15px"
+            }}
+          >
+            {soundOn ? "⏸ Couper le son" : "▶ Lancer le son"}
+          </button>
+        </section>
 
         {screen === "home" && (
           <HomeScreen
