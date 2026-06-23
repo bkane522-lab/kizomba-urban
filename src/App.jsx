@@ -267,7 +267,8 @@ const QUESTIONS = [
   {
     id: 101,
     category: "expert",
-    question: "D’après le schéma, ce qu’on appelait parfois “Kizomba” en France autour de 2010 correspondait plutôt à quel mélange ?",
+    question:
+      "D’après le schéma, ce qu’on appelait parfois “Kizomba” en France autour de 2010 correspondait plutôt à quel mélange ?",
     options: [
       "Kizomba + Tarraxinha + Passada",
       "Semba + Tango + Kompa",
@@ -275,12 +276,14 @@ const QUESTIONS = [
       "Kuduro + Afrohouse uniquement"
     ],
     answer: 0,
-    fact: "Dans tes captures, le “Ghetto Zouk” est présenté comme ce qu’on a parfois appelé Kizomba en France autour de 2010 : Kizomba + Tarraxinha + Passada.",
+    fact:
+      "Dans tes captures, le “Ghetto Zouk” est présenté comme ce qu’on a parfois appelé Kizomba en France autour de 2010 : Kizomba + Tarraxinha + Passada.",
     card: {
       icon: "🧠",
       title: "Ghetto Zouk",
       type: "Carte Expert",
-      text: "Un point avancé : distinguer la danse, la musique et les appellations utilisées selon les périodes."
+      text:
+        "Un point avancé : distinguer la danse, la musique et les appellations utilisées selon les périodes."
     }
   },
   {
@@ -299,7 +302,8 @@ const QUESTIONS = [
       icon: "⚡",
       title: "Cocktail Urban Kiz",
       type: "Carte Expert",
-      text: "L’Urban Kiz est mieux compris quand on connaît les ingrédients qui ont nourri sa construction."
+      text:
+        "L’Urban Kiz est mieux compris quand on connaît les ingrédients qui ont nourri sa construction."
     }
   },
   {
@@ -332,7 +336,8 @@ const QUESTIONS = [
       icon: "🇨🇻",
       title: "Passada",
       type: "Carte Expert",
-      text: "La Passada aide à comprendre une partie des influences qui ont nourri certaines pratiques en Europe."
+      text:
+        "La Passada aide à comprendre une partie des influences qui ont nourri certaines pratiques en Europe."
     }
   },
   {
@@ -365,19 +370,15 @@ const QUESTIONS = [
       icon: "🌊",
       title: "Cabo Love",
       type: "Carte Musique Expert",
-      text: "Le Cabo Love est une influence importante dans certaines musiques liées aux danses afro-caribéennes."
+      text:
+        "Le Cabo Love est une influence importante dans certaines musiques liées aux danses afro-caribéennes."
     }
   },
   {
     id: 107,
     category: "expert",
     question: "Dans le schéma, le Cabo Love est aussi présenté comme…",
-    options: [
-      "Afro-Zouk / Cola-Zouk",
-      "Semba ancien",
-      "Urban Kiz danse",
-      "Tarraxo instrumental"
-    ],
+    options: ["Afro-Zouk / Cola-Zouk", "Semba ancien", "Urban Kiz danse", "Tarraxo instrumental"],
     answer: 0,
     fact: "Le schéma indique que Cabo Love est aussi appelé Afro-Zouk / Cola-Zouk.",
     card: {
@@ -393,7 +394,8 @@ const QUESTIONS = [
     question: "Le Pop Palop / Ghetto Zouk est fortement influencé par…",
     options: ["Le R&B", "Le Rock", "La Techno minimale", "La Valse"],
     answer: 0,
-    fact: "Dans tes captures, le Pop Palop / Ghetto Zouk est indiqué comme fortement influencé par le R&B.",
+    fact:
+      "Dans tes captures, le Pop Palop / Ghetto Zouk est indiqué comme fortement influencé par le R&B.",
     card: {
       icon: "🎤",
       title: "R&B Influence",
@@ -412,7 +414,8 @@ const QUESTIONS = [
       "Cesária Évora, Stromae, Angèle"
     ],
     answer: 0,
-    fact: "Tes captures citent Nelson Freitas, Anselmo Ralph et C4 Pedro autour du Pop Palop / Ghetto Zouk.",
+    fact:
+      "Tes captures citent Nelson Freitas, Anselmo Ralph et C4 Pedro autour du Pop Palop / Ghetto Zouk.",
     card: {
       icon: "⭐",
       title: "Artistes clés",
@@ -431,7 +434,8 @@ const QUESTIONS = [
       "Despacito — Luis Fonsi"
     ],
     answer: 0,
-    fact: "Dans la capture, la musique Urban Kiz est reliée à l’exemple Dança Kizomba — Stony & Elji.",
+    fact:
+      "Dans la capture, la musique Urban Kiz est reliée à l’exemple Dança Kizomba — Stony & Elji.",
     card: {
       icon: "🎧",
       title: "Dança Kizomba",
@@ -443,12 +447,7 @@ const QUESTIONS = [
     id: 111,
     category: "expert",
     question: "Dans les captures, “Intensité” est associée à…",
-    options: [
-      "Profondeur et contraste",
-      "Vitesse et compétition",
-      "Sauts et acrobaties",
-      "Silence et immobilité"
-    ],
+    options: ["Profondeur et contraste", "Vitesse et compétition", "Sauts et acrobaties", "Silence et immobilité"],
     answer: 0,
     fact: "La capture indique : Intensité — profondeur et contraste.",
     card: {
@@ -493,7 +492,8 @@ const QUESTIONS = [
       icon: "📚",
       title: "Musique vs Danse",
       type: "Carte Expert",
-      text: "C’est une notion importante pour éviter les confusions entre styles musicaux et styles de danse."
+      text:
+        "C’est une notion importante pour éviter les confusions entre styles musicaux et styles de danse."
     }
   },
   {
@@ -583,7 +583,6 @@ export default function App() {
 
     const readyTimer = setTimeout(() => {
       setAppReady(true);
-
       requestAnimationFrame(() => {
         window.scrollTo({ top: 0, left: 0, behavior: "auto" });
       });
@@ -651,7 +650,6 @@ export default function App() {
     if (isPackLocked(expertPack, totalScore)) {
       const missing = expertPack.unlockXp - totalScore;
       alert(`Pack Expert verrouillé. Il te manque encore ${missing} XP pour le débloquer.`);
-      setScreen("packs");
       return;
     }
 
@@ -1059,7 +1057,13 @@ function HomeScreen({
 
 function PacksScreen({ activePack, totalScore, choosePack, startQuiz }) {
   return (
-    <main className="screen packs-screen" style={{ paddingBottom: "155px" }}>
+    <main
+      className="screen packs-screen"
+      style={{
+        paddingBottom: "220px",
+        minHeight: "calc(100vh - 80px)"
+      }}
+    >
       <div className="page-title">
         <span>PACKS</span>
         <h1>Choisis ton univers</h1>
@@ -1093,13 +1097,20 @@ function PacksScreen({ activePack, totalScore, choosePack, startQuiz }) {
         })}
       </div>
 
-      <button
-        className="primary-btn"
-        onClick={() => startQuiz(activePack)}
-        style={{ marginBottom: "90px" }}
+      <div
+        style={{
+          position: "sticky",
+          bottom: "82px",
+          zIndex: 40,
+          padding: "12px 0 24px",
+          background:
+            "linear-gradient(180deg, rgba(5,3,10,0), rgba(5,3,10,0.92) 35%, rgba(5,3,10,0.98) 100%)"
+        }}
       >
-        Lancer {activePack.name}
-      </button>
+        <button className="primary-btn" onClick={() => startQuiz(activePack)}>
+          ▶ Commencer le quiz
+        </button>
+      </div>
     </main>
   );
 }
