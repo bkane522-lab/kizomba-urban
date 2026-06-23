@@ -309,17 +309,8 @@ export default function App() {
 
   useEffect(() => {
     if (!audioRef.current) return;
-
-    audioRef.current.volume = 0.22;
-
-    if (soundOn) {
-      audioRef.current.play().catch(() => {
-        setSoundOn(false);
-      });
-    } else {
-      audioRef.current.pause();
-    }
-  }, [soundOn]);
+    audioRef.current.volume = 0.9;
+  }, []);
 
   useEffect(() => {
     if (screen !== "quiz" || locked || !currentQuestion) return;
@@ -412,9 +403,37 @@ export default function App() {
     localStorage.removeItem("ku_cards");
   }
 
+  async function toggleSound() {
+    const audio = audioRef.current;
+
+    if (!audio) {
+      alert("Audio introuvable dans l’application.");
+      return;
+    }
+
+    try {
+      audio.volume = 0.9;
+
+      if (soundOn) {
+        audio.pause();
+        setSoundOn(false);
+        return;
+      }
+
+      audio.currentTime = 0;
+      await audio.play();
+      setSoundOn(true);
+    } catch (error) {
+      console.error("Erreur audio :", error);
+      setSoundOn(false);
+      alert("Le son n’a pas pu démarrer. Vérifie le fichier MP3 et le volume média du téléphone.");
+    }
+  }
+
   return (
     <div className={`app-shell ${soundOn ? "sound-on" : ""}`}>
-      <audio ref={audioRef} src={kizombaLoop} loop preload="none" />
+      <audio ref={audioRef} src={kizombaLoop} loop preload="auto" />
+
       <div className="ambient ambient-one" />
       <div className="ambient ambient-two" />
       <div className="stars" />
@@ -426,7 +445,7 @@ export default function App() {
           progress={progress}
           totalScore={totalScore}
           soundOn={soundOn}
-          setSoundOn={setSoundOn}
+          toggleSound={toggleSound}
         />
 
         {screen === "home" && (
@@ -436,6 +455,7 @@ export default function App() {
             startQuiz={startQuiz}
             cards={cards}
             soundOn={soundOn}
+            goPacks={() => setScreen("packs")}
           />
         )}
 
@@ -481,7 +501,7 @@ export default function App() {
   );
 }
 
-function Header({ level, nextLevel, progress, totalScore, soundOn, setSoundOn }) {
+function Header({ level, nextLevel, progress, totalScore, soundOn, toggleSound }) {
   return (
     <header className="top-header">
       <div>
@@ -490,7 +510,7 @@ function Header({ level, nextLevel, progress, totalScore, soundOn, setSoundOn })
         <small>by KizFlow Studio</small>
       </div>
 
-      <button className="sound-btn" onClick={() => setSoundOn((value) => !value)}>
+      <button className="sound-btn" onClick={toggleSound}>
         {soundOn ? "🔊" : "🔇"}
       </button>
 
@@ -515,7 +535,7 @@ function Header({ level, nextLevel, progress, totalScore, soundOn, setSoundOn })
   );
 }
 
-function HomeScreen({ activePack, setActivePack, startQuiz, cards, soundOn }) {
+function HomeScreen({ activePack, setActivePack, startQuiz, cards, soundOn, goPacks }) {
   return (
     <main className="screen home-screen">
       <section className="hero-premium">
@@ -546,12 +566,12 @@ function HomeScreen({ activePack, setActivePack, startQuiz, cards, soundOn }) {
           ▶ Commencer le quiz
         </button>
 
-        <button className="ghost-btn" onClick={() => setScreenNotUsed()}>
+        <button className="ghost-btn" onClick={goPacks}>
           Pack actif : {activePack.emoji} {activePack.name}
         </button>
 
         <p className="sound-note">
-          {soundOn ? "Ambiance sonore activée" : "Active le son pour plus d’immersion"}
+          {soundOn ? "Ambiance sonore activée" : "Clique sur 🔇 en haut pour activer le son"}
         </p>
       </section>
 
@@ -587,10 +607,6 @@ function HomeScreen({ activePack, setActivePack, startQuiz, cards, soundOn }) {
       </section>
     </main>
   );
-}
-
-function setScreenNotUsed() {
-  return null;
 }
 
 function PacksScreen({ activePack, setActivePack, startQuiz }) {
