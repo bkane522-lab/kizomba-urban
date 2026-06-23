@@ -264,7 +264,6 @@ const QUESTIONS = [
       text: "La musicalité donne du sens aux mouvements."
     }
   },
-
   {
     id: 101,
     category: "expert",
@@ -588,7 +587,7 @@ export default function App() {
       requestAnimationFrame(() => {
         window.scrollTo({ top: 0, left: 0, behavior: "auto" });
       });
-    }, 350);
+    }, 250);
 
     return () => clearTimeout(readyTimer);
   }, []);
@@ -642,6 +641,22 @@ export default function App() {
     }
 
     setActivePack(pack);
+  }
+
+  function openExpert() {
+    const expertPack = PACKS.find((pack) => pack.id === "expert");
+
+    if (!expertPack) return;
+
+    if (isPackLocked(expertPack, totalScore)) {
+      const missing = expertPack.unlockXp - totalScore;
+      alert(`Pack Expert verrouillé. Il te manque encore ${missing} XP pour le débloquer.`);
+      setScreen("packs");
+      return;
+    }
+
+    setActivePack(expertPack);
+    setScreen("packs");
   }
 
   function startQuiz(pack = activePack) {
@@ -853,6 +868,8 @@ export default function App() {
             cards={cards}
             soundOn={soundOn}
             goPacks={() => setScreen("packs")}
+            goCards={() => setScreen("cards")}
+            openExpert={openExpert}
           />
         )}
 
@@ -933,7 +950,17 @@ function Header({ level, nextLevel, progress, totalScore, soundOn, toggleSound }
   );
 }
 
-function HomeScreen({ activePack, totalScore, choosePack, startQuiz, cards, soundOn, goPacks }) {
+function HomeScreen({
+  activePack,
+  totalScore,
+  choosePack,
+  startQuiz,
+  cards,
+  soundOn,
+  goPacks,
+  goCards,
+  openExpert
+}) {
   return (
     <main className="screen home-screen">
       <section className="hero-premium">
@@ -981,12 +1008,18 @@ function HomeScreen({ activePack, totalScore, choosePack, startQuiz, cards, soun
       </section>
 
       <section className="quick-stats">
-        <MiniCard icon="🏆" title="Quiz" text="Défis rapides" />
-        <MiniCard icon="🧠" title="Expert" text={totalScore >= EXPERT_UNLOCK_XP ? "Débloqué" : "260 XP"} />
+        <MiniCard icon="🏆" title="Quiz" text="Défis rapides" onClick={() => startQuiz(activePack)} />
+        <MiniCard
+          icon="🧠"
+          title="Expert"
+          text={totalScore >= EXPERT_UNLOCK_XP ? "Débloqué" : "260 XP"}
+          onClick={openExpert}
+        />
         <MiniCard
           icon="⭐"
           title="Cartes"
           text={`${cards.length} carte${cards.length > 1 ? "s" : ""}`}
+          onClick={goCards}
         />
       </section>
 
@@ -1026,7 +1059,7 @@ function HomeScreen({ activePack, totalScore, choosePack, startQuiz, cards, soun
 
 function PacksScreen({ activePack, totalScore, choosePack, startQuiz }) {
   return (
-    <main className="screen packs-screen">
+    <main className="screen packs-screen" style={{ paddingBottom: "155px" }}>
       <div className="page-title">
         <span>PACKS</span>
         <h1>Choisis ton univers</h1>
@@ -1060,7 +1093,11 @@ function PacksScreen({ activePack, totalScore, choosePack, startQuiz }) {
         })}
       </div>
 
-      <button className="primary-btn" onClick={() => startQuiz(activePack)}>
+      <button
+        className="primary-btn"
+        onClick={() => startQuiz(activePack)}
+        style={{ marginBottom: "90px" }}
+      >
         Lancer {activePack.name}
       </button>
     </main>
@@ -1248,13 +1285,13 @@ function CardsScreen({ cards, resetProgress }) {
   );
 }
 
-function MiniCard({ icon, title, text }) {
+function MiniCard({ icon, title, text, onClick }) {
   return (
-    <article className="mini-card">
+    <button className="mini-card" type="button" onClick={onClick}>
       <div>{icon}</div>
       <strong>{title}</strong>
       <small>{text}</small>
-    </article>
+    </button>
   );
 }
 
