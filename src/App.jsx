@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import logoKizombaUrban from "../kizomba-urban-logo.png";
 
-const AUDIO_URL = "https://kizomba-urban.vercel.app/kizomba-loop-v3.mp3";
+const AUDIO_URL = "https://kizomba-urban.vercel.app/kizomba-loop-v3.mp3?v=3";
+const EXPERT_UNLOCK_XP = 260;
 
 const PACKS = [
   {
@@ -10,6 +11,7 @@ const PACKS = [
     emoji: "🌙",
     color: "#f5c842",
     subtitle: "Les bases essentielles",
+    difficulty: "Facile",
     description: "Kizomba, Urban Kiz et Semba pour commencer fort.",
     categories: ["kizomba", "urban-kiz", "semba"]
   },
@@ -19,6 +21,7 @@ const PACKS = [
     emoji: "🔥",
     color: "#ff3d81",
     subtitle: "Connexion & feeling",
+    difficulty: "Moyen",
     description: "Tarraxo, Tarraxinha, douceur et contrôle du corps.",
     categories: ["tarraxo", "tarraxinha", "douceur"]
   },
@@ -28,6 +31,7 @@ const PACKS = [
     emoji: "🌍",
     color: "#4ecdc4",
     subtitle: "Histoire & racines",
+    difficulty: "Moyen",
     description: "Origines, Angola, musicalité, respect et transmission.",
     categories: ["culture", "kizomba", "semba"]
   },
@@ -37,8 +41,20 @@ const PACKS = [
     emoji: "⚡",
     color: "#9c3dff",
     subtitle: "Styles modernes",
+    difficulty: "Avancé",
     description: "Kizomba Fusion, Urban Kiz moderne et évolutions.",
     categories: ["fusion", "urban-kiz"]
+  },
+  {
+    id: "expert",
+    name: "Expert",
+    emoji: "🧠",
+    color: "#ffe27a",
+    subtitle: "Ghetto Zouk & racines avancées",
+    difficulty: "Expert",
+    unlockXp: EXPERT_UNLOCK_XP,
+    description: "Ghetto Zouk, Urban Kiz, Cabo Love, Pop Palop, R&B et histoire musicale.",
+    categories: ["expert"]
   }
 ];
 
@@ -247,6 +263,258 @@ const QUESTIONS = [
       type: "Carte Culture",
       text: "La musicalité donne du sens aux mouvements."
     }
+  },
+
+  {
+    id: 101,
+    category: "expert",
+    question: "D’après le schéma, ce qu’on appelait parfois “Kizomba” en France autour de 2010 correspondait plutôt à quel mélange ?",
+    options: [
+      "Kizomba + Tarraxinha + Passada",
+      "Semba + Tango + Kompa",
+      "Bachata + Salsa + Merengue",
+      "Kuduro + Afrohouse uniquement"
+    ],
+    answer: 0,
+    fact: "Dans tes captures, le “Ghetto Zouk” est présenté comme ce qu’on a parfois appelé Kizomba en France autour de 2010 : Kizomba + Tarraxinha + Passada.",
+    card: {
+      icon: "🧠",
+      title: "Ghetto Zouk",
+      type: "Carte Expert",
+      text: "Un point avancé : distinguer la danse, la musique et les appellations utilisées selon les périodes."
+    }
+  },
+  {
+    id: 102,
+    category: "expert",
+    question: "Selon les notes, l’Urban Kiz danse descend surtout de quel cocktail ?",
+    options: [
+      "Kizomba + Tarraxinha + Passada",
+      "Semba + Salsa + Zouk Love",
+      "Kompa + Tango + Bachata",
+      "Afrohouse + Coupé-Décalé + Kuduro"
+    ],
+    answer: 0,
+    fact: "Le schéma indique que l’Urban Kiz danse descend du cocktail Kizomba + Tarraxinha + Passada.",
+    card: {
+      icon: "⚡",
+      title: "Cocktail Urban Kiz",
+      type: "Carte Expert",
+      text: "L’Urban Kiz est mieux compris quand on connaît les ingrédients qui ont nourri sa construction."
+    }
+  },
+  {
+    id: 103,
+    category: "expert",
+    question: "Dans le schéma, quelle danse est indiquée comme descendant du Semba ?",
+    options: ["Kizomba", "Passada", "Urban Kiz", "Bachata"],
+    answer: 0,
+    fact: "Le schéma montre la Kizomba comme une danse descendant du Semba.",
+    card: {
+      icon: "🥁",
+      title: "Semba → Kizomba",
+      type: "Carte Racine Expert",
+      text: "Comprendre ce lien évite de mélanger toutes les danses sous une seule étiquette."
+    }
+  },
+  {
+    id: 104,
+    category: "expert",
+    question: "Dans les captures, la Passada est reliée à quel univers ?",
+    options: [
+      "Cap-Vert, Cabo Love et Pop Palop",
+      "Jamaïque et Dancehall",
+      "Argentine et Tango",
+      "Espagne et Flamenco"
+    ],
+    answer: 0,
+    fact: "La Passada est reliée au Cap-Vert, à Cabo Love et au Pop Palop dans tes captures.",
+    card: {
+      icon: "🇨🇻",
+      title: "Passada",
+      type: "Carte Expert",
+      text: "La Passada aide à comprendre une partie des influences qui ont nourri certaines pratiques en Europe."
+    }
+  },
+  {
+    id: 105,
+    category: "expert",
+    question: "Dans l’histoire musicale du Ghetto Zouk, Kassav est associé à quelle branche ?",
+    options: [
+      "Zouk antillais des années 80",
+      "R&B américain des années 2000",
+      "Kompa haïtien uniquement",
+      "Tarraxo moderne"
+    ],
+    answer: 0,
+    fact: "Le schéma relie Kassav au Zouk antillais des années 80.",
+    card: {
+      icon: "🎶",
+      title: "Kassav",
+      type: "Carte Musique Expert",
+      text: "Kassav apparaît comme une référence importante pour comprendre une partie du socle musical."
+    }
+  },
+  {
+    id: 106,
+    category: "expert",
+    question: "Le Cabo Love est associé à quel espace culturel dans le schéma ?",
+    options: ["Cap-Vert", "Angola uniquement", "Cuba", "Brésil"],
+    answer: 0,
+    fact: "Dans tes captures, le Cabo Love est associé au Cap-Vert.",
+    card: {
+      icon: "🌊",
+      title: "Cabo Love",
+      type: "Carte Musique Expert",
+      text: "Le Cabo Love est une influence importante dans certaines musiques liées aux danses afro-caribéennes."
+    }
+  },
+  {
+    id: 107,
+    category: "expert",
+    question: "Dans le schéma, le Cabo Love est aussi présenté comme…",
+    options: [
+      "Afro-Zouk / Cola-Zouk",
+      "Semba ancien",
+      "Urban Kiz danse",
+      "Tarraxo instrumental"
+    ],
+    answer: 0,
+    fact: "Le schéma indique que Cabo Love est aussi appelé Afro-Zouk / Cola-Zouk.",
+    card: {
+      icon: "💙",
+      title: "Afro-Zouk",
+      type: "Carte Expert",
+      text: "Une notion utile pour relier les musiques capverdiennes, caribéennes et les pratiques de danse."
+    }
+  },
+  {
+    id: 108,
+    category: "expert",
+    question: "Le Pop Palop / Ghetto Zouk est fortement influencé par…",
+    options: ["Le R&B", "Le Rock", "La Techno minimale", "La Valse"],
+    answer: 0,
+    fact: "Dans tes captures, le Pop Palop / Ghetto Zouk est indiqué comme fortement influencé par le R&B.",
+    card: {
+      icon: "🎤",
+      title: "R&B Influence",
+      type: "Carte Musique Expert",
+      text: "Le R&B aide à comprendre la couleur moderne et urbaine d’une partie de ces musiques."
+    }
+  },
+  {
+    id: 109,
+    category: "expert",
+    question: "Quels artistes sont cités autour du Pop Palop / Ghetto Zouk ?",
+    options: [
+      "Nelson Freitas, Anselmo Ralph, C4 Pedro",
+      "Michael Jackson, Prince, Usher",
+      "Kendrick Lamar, Drake, Future",
+      "Cesária Évora, Stromae, Angèle"
+    ],
+    answer: 0,
+    fact: "Tes captures citent Nelson Freitas, Anselmo Ralph et C4 Pedro autour du Pop Palop / Ghetto Zouk.",
+    card: {
+      icon: "⭐",
+      title: "Artistes clés",
+      type: "Carte Expert",
+      text: "Ces noms permettent de relier les notions à des références musicales concrètes."
+    }
+  },
+  {
+    id: 110,
+    category: "expert",
+    question: "La musique Urban Kiz est reliée à quel exemple dans le schéma ?",
+    options: [
+      "Dança Kizomba — Stony & Elji",
+      "Thriller — Michael Jackson",
+      "No Woman No Cry — Bob Marley",
+      "Despacito — Luis Fonsi"
+    ],
+    answer: 0,
+    fact: "Dans la capture, la musique Urban Kiz est reliée à l’exemple Dança Kizomba — Stony & Elji.",
+    card: {
+      icon: "🎧",
+      title: "Dança Kizomba",
+      type: "Carte Musique Expert",
+      text: "Un exemple utilisé pour situer l’univers musical Urban Kiz."
+    }
+  },
+  {
+    id: 111,
+    category: "expert",
+    question: "Dans les captures, “Intensité” est associée à…",
+    options: [
+      "Profondeur et contraste",
+      "Vitesse et compétition",
+      "Sauts et acrobaties",
+      "Silence et immobilité"
+    ],
+    answer: 0,
+    fact: "La capture indique : Intensité — profondeur et contraste.",
+    card: {
+      icon: "💎",
+      title: "Intensité",
+      type: "Carte Feeling Expert",
+      text: "L’intensité ne veut pas forcément dire force : elle peut venir du contraste et de la profondeur."
+    }
+  },
+  {
+    id: 112,
+    category: "expert",
+    question: "Dans les captures, “Harmonie” est associée à…",
+    options: [
+      "Un duo qui ne fait qu’un",
+      "Deux danseurs qui se défient",
+      "Une danse sans connexion",
+      "Une suite de figures rapides"
+    ],
+    answer: 0,
+    fact: "La capture indique : Harmonie — un duo qui ne fait qu’un.",
+    card: {
+      icon: "🫶",
+      title: "Harmonie",
+      type: "Carte Feeling Expert",
+      text: "L’harmonie est liée à l’unité du duo, à l’écoute et à la qualité de connexion."
+    }
+  },
+  {
+    id: 113,
+    category: "expert",
+    question: "La phrase “la danse suit la musique, mais elle a ses propres racines” signifie que…",
+    options: [
+      "La danse et la musique sont liées, mais leur histoire peut être différente",
+      "La danse n’a aucune histoire",
+      "La musique est toujours plus importante que la danse",
+      "Toutes les danses viennent du même endroit"
+    ],
+    answer: 0,
+    fact: "Cette idée rappelle qu’on doit distinguer les racines de la musique et celles de la danse.",
+    card: {
+      icon: "📚",
+      title: "Musique vs Danse",
+      type: "Carte Expert",
+      text: "C’est une notion importante pour éviter les confusions entre styles musicaux et styles de danse."
+    }
+  },
+  {
+    id: 114,
+    category: "expert",
+    question: "Dans le tableau manuscrit, on voit l’idée que le flow naît surtout de la relation entre…",
+    options: [
+      "Musique, danseur, ressenti et dynamique",
+      "Vitesse, force et compétition",
+      "Hasard, bruit et rupture",
+      "Figures, performance et acrobaties uniquement"
+    ],
+    answer: 0,
+    fact: "Ton tableau manuscrit met en avant une logique de relation : musique, danseur, flow, ressenti, dynamique.",
+    card: {
+      icon: "🌀",
+      title: "Flow",
+      type: "Carte Expert",
+      text: "Le flow se construit dans la relation entre musique, corps, ressenti et intention."
+    }
   }
 ];
 
@@ -271,7 +539,12 @@ function getNextLevel(score) {
   return LEVELS.find((level) => level.min > score) || null;
 }
 
+function isPackLocked(pack, totalScore) {
+  return Boolean(pack.unlockXp && totalScore < pack.unlockXp);
+}
+
 export default function App() {
+  const [appReady, setAppReady] = useState(false);
   const [screen, setScreen] = useState("home");
   const [activePack, setActivePack] = useState(PACKS[0]);
   const [questions, setQuestions] = useState([]);
@@ -301,6 +574,30 @@ export default function App() {
   }, [level, nextLevel, totalScore]);
 
   useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    document.documentElement.style.overflowAnchor = "none";
+    document.body.style.overflowAnchor = "none";
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+
+    const readyTimer = setTimeout(() => {
+      setAppReady(true);
+
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      });
+    }, 350);
+
+    return () => clearTimeout(readyTimer);
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [screen]);
+
+  useEffect(() => {
     localStorage.setItem("ku_total_score", JSON.stringify(totalScore));
   }, [totalScore]);
 
@@ -314,8 +611,7 @@ export default function App() {
 
     audio.volume = 1;
     audio.muted = false;
-    audio.load();
-  }, []);
+  }, [appReady]);
 
   useEffect(() => {
     if (screen !== "quiz" || locked || !currentQuestion) return;
@@ -338,7 +634,23 @@ export default function App() {
     return () => clearInterval(timerRef.current);
   }, [screen, questionIndex, locked, currentQuestion]);
 
+  function choosePack(pack) {
+    if (isPackLocked(pack, totalScore)) {
+      const missing = pack.unlockXp - totalScore;
+      alert(`Pack Expert verrouillé. Il te manque encore ${missing} XP pour le débloquer.`);
+      return;
+    }
+
+    setActivePack(pack);
+  }
+
   function startQuiz(pack = activePack) {
+    if (isPackLocked(pack, totalScore)) {
+      const missing = pack.unlockXp - totalScore;
+      alert(`Pack Expert verrouillé. Il te manque encore ${missing} XP pour le débloquer.`);
+      return;
+    }
+
     const pool = QUESTIONS.filter((question) => pack.categories.includes(question.category));
     const quizQuestions = shuffle(pool.length ? pool : QUESTIONS).slice(0, 8);
 
@@ -362,7 +674,8 @@ export default function App() {
     const correct = index === currentQuestion.answer;
     const speedBonus = correct ? Math.round(timeLeft / 10) : 0;
     const streakBonus = correct && streak >= 2 ? 5 : 0;
-    const points = correct ? 10 + speedBonus + streakBonus : 0;
+    const expertBonus = correct && activePack.id === "expert" ? 10 : 0;
+    const points = correct ? 10 + speedBonus + streakBonus + expertBonus : 0;
 
     setSelectedAnswer(index);
     setLocked(true);
@@ -406,6 +719,7 @@ export default function App() {
     setCards([]);
     localStorage.removeItem("ku_total_score");
     localStorage.removeItem("ku_cards");
+    setActivePack(PACKS[0]);
   }
 
   async function toggleSound() {
@@ -431,8 +745,77 @@ export default function App() {
     } catch (error) {
       console.error("Erreur audio :", error);
       setSoundOn(false);
-      alert("Le son n’a pas pu démarrer. Rouvre l’app avec ?v=finalaudio et réessaie.");
+      alert("Le son n’a pas pu démarrer. Clique encore une fois sur le bouton son.");
     }
+  }
+
+  if (!appReady) {
+    return (
+      <div className="app-shell">
+        <div className="ambient ambient-one" />
+        <div className="ambient ambient-two" />
+        <div className="stars" />
+
+        <div
+          className="app"
+          style={{
+            display: "grid",
+            placeItems: "center",
+            minHeight: "100vh",
+            padding: "24px"
+          }}
+        >
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "250px",
+              textAlign: "center",
+              padding: "18px",
+              borderRadius: "24px",
+              background: "rgba(18, 12, 31, 0.9)",
+              border: "1px solid rgba(245, 200, 66, 0.2)",
+              boxShadow: "0 20px 70px rgba(0,0,0,0.45)"
+            }}
+          >
+            <img
+              src={logoKizombaUrban}
+              alt="Quiz Kizomba Urban"
+              width="170"
+              height="170"
+              style={{
+                width: "120px",
+                height: "120px",
+                objectFit: "cover",
+                borderRadius: "20px",
+                display: "block",
+                margin: "0 auto 12px"
+              }}
+            />
+
+            <strong
+              style={{
+                display: "block",
+                color: "#ffe27a",
+                fontSize: "16px",
+                fontWeight: 900
+              }}
+            >
+              Kizomba Urban
+            </strong>
+
+            <small
+              style={{
+                display: "block",
+                marginTop: "5px",
+                color: "#a79bbc"
+              }}
+            >
+              Chargement…
+            </small>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -441,7 +824,7 @@ export default function App() {
         ref={audioRef}
         src={AUDIO_URL}
         loop
-        preload="auto"
+        preload="none"
         playsInline
         onPlay={() => setSoundOn(true)}
         onPause={() => setSoundOn(false)}
@@ -464,7 +847,8 @@ export default function App() {
         {screen === "home" && (
           <HomeScreen
             activePack={activePack}
-            setActivePack={setActivePack}
+            totalScore={totalScore}
+            choosePack={choosePack}
             startQuiz={startQuiz}
             cards={cards}
             soundOn={soundOn}
@@ -475,7 +859,8 @@ export default function App() {
         {screen === "packs" && (
           <PacksScreen
             activePack={activePack}
-            setActivePack={setActivePack}
+            totalScore={totalScore}
+            choosePack={choosePack}
             startQuiz={startQuiz}
           />
         )}
@@ -548,12 +933,19 @@ function Header({ level, nextLevel, progress, totalScore, soundOn, toggleSound }
   );
 }
 
-function HomeScreen({ activePack, setActivePack, startQuiz, cards, soundOn, goPacks }) {
+function HomeScreen({ activePack, totalScore, choosePack, startQuiz, cards, soundOn, goPacks }) {
   return (
     <main className="screen home-screen">
       <section className="hero-premium">
         <div className="logo-stage">
-          <img src={logoKizombaUrban} alt="Quiz Kizomba Urban" />
+          <img
+            src={logoKizombaUrban}
+            alt="Quiz Kizomba Urban"
+            width="512"
+            height="512"
+            loading="eager"
+            decoding="sync"
+          />
           <div className="logo-glow" />
         </div>
 
@@ -569,10 +961,10 @@ function HomeScreen({ activePack, setActivePack, startQuiz, cards, soundOn, goPa
           Kizomba <b>•</b> Urban Kiz <b>•</b> Semba <b>•</b> Tarraxo <b>•</b> Tarraxinha
         </p>
 
-        <h1>Deviens incollable sur la culture Kizomba & Urban Kiz.</h1>
+        <h1>Teste ta culture Kizomba & Urban Kiz.</h1>
 
         <p className="hero-text">
-          Quiz, cartes culturelles, niveaux et défis pour apprendre en jouant.
+          Quiz rapide, niveaux, cartes culturelles et pack Expert à 260 XP.
         </p>
 
         <button className="primary-btn" onClick={() => startQuiz(activePack)}>
@@ -590,10 +982,10 @@ function HomeScreen({ activePack, setActivePack, startQuiz, cards, soundOn, goPa
 
       <section className="quick-stats">
         <MiniCard icon="🏆" title="Quiz" text="Défis rapides" />
-        <MiniCard icon="🔥" title="Culture" text="Cartes à débloquer" />
+        <MiniCard icon="🧠" title="Expert" text={totalScore >= EXPERT_UNLOCK_XP ? "Débloqué" : "260 XP"} />
         <MiniCard
           icon="⭐"
-          title="Progression"
+          title="Cartes"
           text={`${cards.length} carte${cards.length > 1 ? "s" : ""}`}
         />
       </section>
@@ -601,53 +993,71 @@ function HomeScreen({ activePack, setActivePack, startQuiz, cards, soundOn, goPa
       <section className="pack-preview">
         <div className="section-title">
           <strong>Choisis ton expérience</strong>
-          <small>4 packs</small>
+          <small>Expert à 260 XP</small>
         </div>
 
         <div className="pack-row">
-          {PACKS.map((pack) => (
-            <button
-              key={pack.id}
-              className={`pack-mini ${activePack.id === pack.id ? "active" : ""}`}
-              onClick={() => setActivePack(pack)}
-              style={{ "--pack-color": pack.color }}
-            >
-              <span>{pack.emoji}</span>
-              <b>{pack.name}</b>
-            </button>
-          ))}
+          {PACKS.map((pack) => {
+            const locked = isPackLocked(pack, totalScore);
+            const missing = pack.unlockXp ? pack.unlockXp - totalScore : 0;
+
+            return (
+              <button
+                key={pack.id}
+                className={`pack-mini ${activePack.id === pack.id ? "active" : ""}`}
+                onClick={() => choosePack(pack)}
+                style={{
+                  "--pack-color": pack.color,
+                  opacity: locked ? 0.48 : 1,
+                  filter: locked ? "grayscale(0.25)" : "none"
+                }}
+              >
+                <span>{locked ? "🔒" : pack.emoji}</span>
+                <b>{pack.name}</b>
+                {locked && <small>{missing} XP</small>}
+              </button>
+            );
+          })}
         </div>
       </section>
     </main>
   );
 }
 
-function PacksScreen({ activePack, setActivePack, startQuiz }) {
+function PacksScreen({ activePack, totalScore, choosePack, startQuiz }) {
   return (
     <main className="screen packs-screen">
       <div className="page-title">
         <span>PACKS</span>
         <h1>Choisis ton univers</h1>
-        <p>Moins de catégories affichées, plus de clarté et une meilleure expérience.</p>
+        <p>Le pack Expert se débloque à 260 XP avec les questions les plus difficiles.</p>
       </div>
 
       <div className="packs-grid">
-        {PACKS.map((pack) => (
-          <button
-            key={pack.id}
-            className={`pack-card ${activePack.id === pack.id ? "active" : ""}`}
-            onClick={() => setActivePack(pack)}
-            style={{ "--pack-color": pack.color }}
-          >
-            <div className="pack-icon">{pack.emoji}</div>
+        {PACKS.map((pack) => {
+          const locked = isPackLocked(pack, totalScore);
+          const missing = pack.unlockXp ? pack.unlockXp - totalScore : 0;
 
-            <div>
-              <small>{pack.subtitle}</small>
-              <h2>{pack.name}</h2>
-              <p>{pack.description}</p>
-            </div>
-          </button>
-        ))}
+          return (
+            <button
+              key={pack.id}
+              className={`pack-card ${activePack.id === pack.id ? "active" : ""}`}
+              onClick={() => choosePack(pack)}
+              style={{
+                "--pack-color": pack.color,
+                opacity: locked ? 0.55 : 1
+              }}
+            >
+              <div className="pack-icon">{locked ? "🔒" : pack.emoji}</div>
+
+              <div>
+                <small>{locked ? `Débloqué dans ${missing} XP` : pack.difficulty}</small>
+                <h2>{pack.name}</h2>
+                <p>{pack.description}</p>
+              </div>
+            </button>
+          );
+        })}
       </div>
 
       <button className="primary-btn" onClick={() => startQuiz(activePack)}>
@@ -695,7 +1105,7 @@ function QuizScreen({
       </div>
 
       <section className="question-card">
-        <small>Question culture</small>
+        <small>{activePack.id === "expert" ? "Question Expert" : "Question culture"}</small>
         <h2>{question.question}</h2>
       </section>
 
