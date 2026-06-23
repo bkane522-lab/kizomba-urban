@@ -414,8 +414,7 @@ export default function App() {
 
   return (
     <div className={`app-shell ${soundOn ? "sound-on" : ""}`}>
-      <audio ref={audioRef} src="/kizomba-loop.mp3" loop preload="none" />
-
+      <audio ref={audioRef} src={kizombaLoop} loop preload="none" />
       <div className="ambient ambient-one" />
       <div className="ambient ambient-two" />
       <div className="stars" />
