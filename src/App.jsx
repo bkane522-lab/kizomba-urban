@@ -285,7 +285,6 @@ export default function App() {
   const [timeLeft, setTimeLeft] = useState(100);
   const [streak, setStreak] = useState(0);
   const [soundOn, setSoundOn] = useState(false);
-  const [audioStatus, setAudioStatus] = useState("Audio prêt à tester");
 
   const timerRef = useRef(null);
   const audioRef = useRef(null);
@@ -413,40 +412,41 @@ export default function App() {
     const audio = audioRef.current;
 
     if (!audio) {
-      setAudioStatus("Audio introuvable.");
       alert("Audio introuvable.");
       return;
     }
 
     try {
-      audio.src = AUDIO_URL;
       audio.volume = 1;
       audio.muted = false;
 
       if (soundOn) {
         audio.pause();
         setSoundOn(false);
-        setAudioStatus("Son en pause");
         return;
-      }
-
-      if (audio.readyState === 0) {
-        audio.load();
       }
 
       await audio.play();
       setSoundOn(true);
-      setAudioStatus("Son lancé");
     } catch (error) {
       console.error("Erreur audio :", error);
       setSoundOn(false);
-      setAudioStatus("Le son n’a pas pu démarrer dans l’app.");
-      alert("Le son n’a pas pu démarrer dans l’app. Essaie le lecteur audio visible.");
+      alert("Le son n’a pas pu démarrer. Rouvre l’app avec ?v=finalaudio et réessaie.");
     }
   }
 
   return (
     <div className={`app-shell ${soundOn ? "sound-on" : ""}`}>
+      <audio
+        ref={audioRef}
+        src={AUDIO_URL}
+        loop
+        preload="auto"
+        playsInline
+        onPlay={() => setSoundOn(true)}
+        onPause={() => setSoundOn(false)}
+      />
+
       <div className="ambient ambient-one" />
       <div className="ambient ambient-two" />
       <div className="stars" />
@@ -460,84 +460,6 @@ export default function App() {
           soundOn={soundOn}
           toggleSound={toggleSound}
         />
-
-        <section
-          style={{
-            position: "relative",
-            zIndex: 999,
-            margin: "12px 18px",
-            padding: "14px",
-            borderRadius: "18px",
-            background: "rgba(18, 12, 31, 0.95)",
-            border: "1px solid rgba(245, 200, 66, 0.25)"
-          }}
-        >
-          <p
-            style={{
-              margin: "0 0 8px",
-              color: "#ffe27a",
-              fontWeight: 900,
-              fontSize: "13px"
-            }}
-          >
-            Test audio direct
-          </p>
-
-          <audio
-            ref={audioRef}
-            src={AUDIO_URL}
-            loop
-            preload="auto"
-            controls
-            playsInline
-            onLoadedData={() => setAudioStatus("Audio chargé")}
-            onCanPlay={() => setAudioStatus("Audio prêt")}
-            onPlay={() => {
-              setSoundOn(true);
-              setAudioStatus("Son lancé");
-            }}
-            onPause={() => {
-              setSoundOn(false);
-              setAudioStatus("Son en pause");
-            }}
-            onError={() => {
-              setSoundOn(false);
-              setAudioStatus("Erreur de lecture audio");
-            }}
-            style={{
-              width: "100%",
-              display: "block"
-            }}
-          />
-
-          <button
-            onClick={toggleSound}
-            style={{
-              width: "100%",
-              marginTop: "10px",
-              padding: "13px",
-              borderRadius: "16px",
-              border: "0",
-              background: "linear-gradient(135deg, #fff0a3, #f5c842, #d99018)",
-              color: "#171003",
-              fontWeight: 900,
-              fontSize: "15px"
-            }}
-          >
-            {soundOn ? "⏸ Couper le son" : "▶ Lancer le son"}
-          </button>
-
-          <p
-            style={{
-              margin: "9px 0 0",
-              color: "#a79bbc",
-              fontSize: "12px",
-              lineHeight: 1.4
-            }}
-          >
-            Statut : {audioStatus}
-          </p>
-        </section>
 
         {screen === "home" && (
           <HomeScreen
@@ -662,7 +584,7 @@ function HomeScreen({ activePack, setActivePack, startQuiz, cards, soundOn, goPa
         </button>
 
         <p className="sound-note">
-          {soundOn ? "Ambiance sonore activée" : "Teste le lecteur audio visible en haut de l’app"}
+          {soundOn ? "Ambiance sonore activée" : "Clique sur 🔇 en haut pour activer le son"}
         </p>
       </section>
 
