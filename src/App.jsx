@@ -1089,17 +1089,28 @@ function HomeScreen({
 
 function PacksScreen({ activePack, totalScore, choosePack, startQuiz }) {
   return (
-    <main
-      className="screen packs-screen"
-      style={{
-        paddingBottom: "250px",
-        minHeight: "calc(100vh - 70px)"
-      }}
-    >
+    <main className="screen packs-screen" style={{ paddingBottom: "110px" }}>
       <div className="page-title">
         <span>PACKS</span>
         <h1>Choisis ton univers</h1>
         <p>Le pack Expert se débloque à 260 XP avec les questions les plus difficiles.</p>
+      </div>
+
+      <div style={{ marginBottom: "13px" }}>
+        <button className="primary-btn" onClick={() => startQuiz(activePack)}>
+          ▶ Commencer le quiz
+        </button>
+
+        <p
+          style={{
+            margin: "8px 0 0",
+            textAlign: "center",
+            color: "#a79bbc",
+            fontSize: "12px"
+          }}
+        >
+          Pack actif : {activePack.emoji} {activePack.name}
+        </p>
       </div>
 
       <div className="packs-grid">
@@ -1127,25 +1138,6 @@ function PacksScreen({ activePack, totalScore, choosePack, startQuiz }) {
             </button>
           );
         })}
-      </div>
-
-      <div
-        style={{
-          position: "fixed",
-          left: "50%",
-          bottom: "92px",
-          transform: "translateX(-50%)",
-          zIndex: 100,
-          width: "100%",
-          maxWidth: "430px",
-          padding: "10px 14px 14px",
-          background:
-            "linear-gradient(180deg, rgba(5,3,10,0), rgba(5,3,10,0.9) 35%, rgba(5,3,10,0.98) 100%)"
-        }}
-      >
-        <button className="primary-btn" onClick={() => startQuiz(activePack)}>
-          ▶ Commencer le quiz
-        </button>
       </div>
     </main>
   );
