@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import logoKizombaUrban from "../kizomba-urban-logo.png";
-import kizombaLoop from "../kizomba-loop-v2.mp3";
 
 const PACKS = [
   {
@@ -420,33 +419,32 @@ export default function App() {
         return;
       }
 
-      audio.currentTime = 0;
       await audio.play();
       setSoundOn(true);
     } catch (error) {
       console.error("Erreur audio :", error);
       setSoundOn(false);
-      alert("Le son n’a pas pu démarrer. Vérifie le fichier MP3 et le volume média du téléphone.");
+      alert("Le son n’a pas pu démarrer. Teste d’abord le lecteur audio visible dans l’app.");
     }
   }
 
   return (
     <div className={`app-shell ${soundOn ? "sound-on" : ""}`}>
       <audio
-  ref={audioRef}
-  src={kizombaLoop}
-  loop
-  preload="auto"
-  controls
-  playsInline
-  style={{
-    width: "92%",
-    margin: "12px auto",
-    display: "block",
-    position: "relative",
-    zIndex: 999
-  }}
-/>
+        ref={audioRef}
+        src="/kizomba-loop-v3.mp3"
+        loop
+        preload="auto"
+        controls
+        playsInline
+        style={{
+          width: "92%",
+          margin: "12px auto",
+          display: "block",
+          position: "relative",
+          zIndex: 999
+        }}
+      />
 
       <div className="ambient ambient-one" />
       <div className="ambient ambient-two" />
@@ -585,7 +583,7 @@ function HomeScreen({ activePack, setActivePack, startQuiz, cards, soundOn, goPa
         </button>
 
         <p className="sound-note">
-          {soundOn ? "Ambiance sonore activée" : "Clique sur 🔇 en haut pour activer le son"}
+          {soundOn ? "Ambiance sonore activée" : "Teste le lecteur audio visible en haut de l’app"}
         </p>
       </section>
 
