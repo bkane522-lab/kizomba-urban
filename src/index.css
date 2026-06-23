@@ -1036,3 +1036,52 @@ audio {
     margin-bottom: 145px !important;
   }
                    }
+.home-screen .pack-preview {
+  display: none !important;
+}
+
+.home-screen {
+  padding-bottom: 135px !important;
+}
+
+.cards-screen .danger-btn {
+  margin-bottom: 150px !important;
+}
+
+.packs-screen {
+  padding-bottom: 220px !important;
+}
+
+.packs-grid {
+  margin-bottom: 150px !important;
+}
+
+@media (max-width: 430px) {
+  .hero-premium {
+    padding-top: 2px !important;
+  }
+
+  .logo-stage {
+    width: 138px !important;
+    height: 138px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .hero-premium h1 {
+    font-size: 17px !important;
+    line-height: 1.08 !important;
+  }
+
+  .hero-text {
+    font-size: 10.8px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .quick-stats {
+    margin-bottom: 26px !important;
+  }
+
+  .bottom-nav {
+    padding-bottom: calc(14px + env(safe-area-inset-bottom)) !important;
+  }
+}
