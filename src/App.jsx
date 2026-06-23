@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import logoKizombaUrban from "../kizomba-urban-logo.png";
 
+const AUDIO_URL = "https://kizomba-urban.vercel.app/kizomba-loop-v3.mp3";
+
 const PACKS = [
   {
     id: "decouverte",
@@ -283,6 +285,7 @@ export default function App() {
   const [timeLeft, setTimeLeft] = useState(100);
   const [streak, setStreak] = useState(0);
   const [soundOn, setSoundOn] = useState(false);
+  const [audioStatus, setAudioStatus] = useState("Audio prêt à tester");
 
   const timerRef = useRef(null);
   const audioRef = useRef(null);
@@ -307,8 +310,12 @@ export default function App() {
   }, [cards]);
 
   useEffect(() => {
-    if (!audioRef.current) return;
-    audioRef.current.volume = 1;
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    audio.volume = 1;
+    audio.muted = false;
+    audio.load();
   }, []);
 
   useEffect(() => {
@@ -406,26 +413,35 @@ export default function App() {
     const audio = audioRef.current;
 
     if (!audio) {
+      setAudioStatus("Audio introuvable.");
       alert("Audio introuvable.");
       return;
     }
 
     try {
+      audio.src = AUDIO_URL;
       audio.volume = 1;
       audio.muted = false;
 
       if (soundOn) {
         audio.pause();
         setSoundOn(false);
+        setAudioStatus("Son en pause");
         return;
+      }
+
+      if (audio.readyState === 0) {
+        audio.load();
       }
 
       await audio.play();
       setSoundOn(true);
+      setAudioStatus("Son lancé");
     } catch (error) {
       console.error("Erreur audio :", error);
       setSoundOn(false);
-      alert("Le son n’a pas pu démarrer. Essaie le lecteur audio visible juste sous l’en-tête.");
+      setAudioStatus("Le son n’a pas pu démarrer dans l’app.");
+      alert("Le son n’a pas pu démarrer dans l’app. Essaie le lecteur audio visible.");
     }
   }
 
@@ -460,7 +476,7 @@ export default function App() {
             style={{
               margin: "0 0 8px",
               color: "#ffe27a",
-              fontWeight: 800,
+              fontWeight: 900,
               fontSize: "13px"
             }}
           >
@@ -469,13 +485,25 @@ export default function App() {
 
           <audio
             ref={audioRef}
-            src="/kizomba-loop-v3.mp3"
+            src={AUDIO_URL}
             loop
             preload="auto"
             controls
             playsInline
-            onPlay={() => setSoundOn(true)}
-            onPause={() => setSoundOn(false)}
+            onLoadedData={() => setAudioStatus("Audio chargé")}
+            onCanPlay={() => setAudioStatus("Audio prêt")}
+            onPlay={() => {
+              setSoundOn(true);
+              setAudioStatus("Son lancé");
+            }}
+            onPause={() => {
+              setSoundOn(false);
+              setAudioStatus("Son en pause");
+            }}
+            onError={() => {
+              setSoundOn(false);
+              setAudioStatus("Erreur de lecture audio");
+            }}
             style={{
               width: "100%",
               display: "block"
@@ -498,6 +526,17 @@ export default function App() {
           >
             {soundOn ? "⏸ Couper le son" : "▶ Lancer le son"}
           </button>
+
+          <p
+            style={{
+              margin: "9px 0 0",
+              color: "#a79bbc",
+              fontSize: "12px",
+              lineHeight: 1.4
+            }}
+          >
+            Statut : {audioStatus}
+          </p>
         </section>
 
         {screen === "home" && (
