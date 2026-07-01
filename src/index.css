@@ -1163,3 +1163,117 @@ button {
     min-height: 96px !important;
   }
 }
+/* =========================================================
+   HOTFIX UX ULTRA COMPACT — ACCUEIL MOBILE
+   À coller tout en bas de src/index.css
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .home-screen {
+    padding-top: 10px !important;
+    padding-bottom: 100px !important;
+  }
+
+  .hero-premium {
+    gap: 0 !important;
+  }
+
+  .home-screen .logo-stage {
+    width: 105px !important;
+    height: 105px !important;
+    padding: 5px !important;
+    margin: 4px auto 8px !important;
+    border-radius: 24px !important;
+  }
+
+  .home-screen .logo-stage img {
+    border-radius: 18px !important;
+  }
+
+  .home-screen .eyebrow {
+    font-size: 10px !important;
+    letter-spacing: 0.12em !important;
+    margin: 6px 0 6px !important;
+  }
+
+  .home-screen h1 {
+    font-size: 23px !important;
+    line-height: 1.05 !important;
+    margin: 0 0 8px !important;
+  }
+
+  .home-screen .hero-text {
+    font-size: 12.5px !important;
+    line-height: 1.32 !important;
+    max-width: 330px !important;
+    margin: 0 auto 10px !important;
+  }
+
+  .home-screen .quick-stats {
+    gap: 8px !important;
+    margin: 8px 0 10px !important;
+  }
+
+  .home-screen .quick-stats div {
+    min-height: 60px !important;
+    padding: 8px 5px !important;
+    border-radius: 17px !important;
+  }
+
+  .home-screen .quick-stats strong {
+    font-size: 16px !important;
+  }
+
+  .home-screen .quick-stats span {
+    font-size: 10.5px !important;
+  }
+
+  .home-screen .progress-card {
+    padding: 10px !important;
+    margin: 8px 0 10px !important;
+    border-radius: 17px !important;
+  }
+
+  .home-screen .primary-btn {
+    height: 46px !important;
+    min-height: 46px !important;
+    border-radius: 18px !important;
+    font-size: 14px !important;
+    margin: 8px 0 0 !important;
+  }
+
+  /* On cache Voir les packs sur l’accueil mobile,
+     car l’onglet Packs existe déjà dans la barre du bas */
+  .home-screen .secondary-btn {
+    display: none !important;
+  }
+
+  .home-screen .info-ad-card {
+    margin-top: 12px !important;
+    padding: 16px !important;
+    border-radius: 22px !important;
+  }
+
+  .home-screen .info-ad-card h2 {
+    font-size: 20px !important;
+  }
+
+  .home-screen .info-ad-card p {
+    font-size: 12.5px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .home-screen .logo-stage {
+    width: 94px !important;
+    height: 94px !important;
+  }
+
+  .home-screen h1 {
+    font-size: 21px !important;
+  }
+
+  .home-screen .hero-text {
+    font-size: 12px !important;
+  }
+}
