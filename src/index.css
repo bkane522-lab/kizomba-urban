@@ -689,3 +689,477 @@ button {
     font-size: 23px;
   }
   }
+/* =========================================================
+   HOTFIX UX COMPACT MOBILE — KIZOMBA URBAN QUIZ
+   Objectif : moins de scroll, textes plus doux, bouton plus compact
+   ========================================================= */
+
+@media (max-width: 600px) {
+  body {
+    background:
+      radial-gradient(circle at 20% 8%, rgba(126, 55, 255, 0.28), transparent 26%),
+      radial-gradient(circle at 82% 18%, rgba(255, 188, 45, 0.16), transparent 26%),
+      radial-gradient(circle at 70% 85%, rgba(0, 220, 200, 0.12), transparent 28%),
+      linear-gradient(180deg, #07020d 0%, #05020a 52%, #020006 100%) !important;
+  }
+
+  .app-shell,
+  .app,
+  #root {
+    max-width: 520px !important;
+    margin: 0 auto !important;
+    overflow-x: hidden !important;
+  }
+
+  .screen,
+  .home-screen,
+  .packs-screen,
+  .cards-screen,
+  .infos-screen,
+  .quiz-screen {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+    padding-bottom: 118px !important;
+  }
+
+  /* Header plus fin */
+  .topbar,
+  .app-header,
+  header {
+    min-height: 62px !important;
+    padding: 8px 12px !important;
+  }
+
+  .brand-mini img,
+  .app-header img,
+  .topbar img {
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 12px !important;
+  }
+
+  .brand-mini strong,
+  .app-title,
+  .topbar strong {
+    font-size: 14px !important;
+    line-height: 1.1 !important;
+  }
+
+  .brand-mini span,
+  .app-subtitle,
+  .topbar span {
+    font-size: 11px !important;
+  }
+
+  .sound-btn {
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 16px !important;
+    font-size: 18px !important;
+  }
+
+  /* Logo central moins énorme */
+  .logo-stage,
+  .hero-logo,
+  .logo-card,
+  .main-logo {
+    width: 132px !important;
+    height: 132px !important;
+    margin: 8px auto 10px !important;
+    border-radius: 28px !important;
+    padding: 7px !important;
+  }
+
+  .logo-stage img,
+  .hero-logo img,
+  .logo-card img,
+  .main-logo img {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 21px !important;
+    object-fit: cover !important;
+  }
+
+  /* Texte principal plus petit et moins blanc */
+  .hero-premium h1,
+  .hero h1,
+  .home-hero h1,
+  .main-title,
+  h1 {
+    font-size: 25px !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.04em !important;
+    color: #fff3d2 !important;
+    margin-bottom: 8px !important;
+  }
+
+  .hero-premium h2,
+  .hero h2,
+  .home-hero h2,
+  .headline,
+  .big-title {
+    font-size: 28px !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.04em !important;
+    color: #fff3d2 !important;
+    margin: 8px 0 10px !important;
+  }
+
+  .hero-text,
+  .hero-premium p,
+  .home-hero p,
+  .subtitle,
+  .lead-text {
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+    color: rgba(255, 248, 223, 0.66) !important;
+    margin-top: 8px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .eyebrow,
+  .tagline,
+  .style-tags {
+    font-size: 11px !important;
+    letter-spacing: 0.14em !important;
+    margin: 8px 0 !important;
+    color: #73f3df !important;
+  }
+
+  /* Bouton commencer plus compact */
+  .primary-btn,
+  .start-btn,
+  .quiz-start-btn,
+  button.primary,
+  .cta-button {
+    min-height: 48px !important;
+    height: 48px !important;
+    border-radius: 19px !important;
+    font-size: 15px !important;
+    font-weight: 900 !important;
+    padding: 0 18px !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .secondary-btn,
+  .pack-active,
+  .active-pack,
+  .current-pack {
+    min-height: 46px !important;
+    border-radius: 18px !important;
+    font-size: 14px !important;
+    padding: 10px 14px !important;
+    margin-top: 8px !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* Statistiques plus compactes */
+  .quick-stats,
+  .stats-row,
+  .home-stats {
+    gap: 8px !important;
+    margin: 10px 0 12px !important;
+  }
+
+  .quick-stats div,
+  .stat-card {
+    min-height: 70px !important;
+    padding: 10px 6px !important;
+    border-radius: 18px !important;
+  }
+
+  .quick-stats strong,
+  .stat-card strong {
+    font-size: 17px !important;
+  }
+
+  .quick-stats span,
+  .stat-card span {
+    font-size: 11px !important;
+  }
+
+  .progress-card,
+  .progress-box {
+    padding: 11px !important;
+    border-radius: 18px !important;
+    margin: 10px 0 12px !important;
+  }
+
+  .progress-top {
+    font-size: 11px !important;
+  }
+
+  .progress-bar {
+    height: 7px !important;
+  }
+
+  /* Les 3 cartes Quiz / Culture / Progression plus petites */
+  .feature-grid,
+  .quick-actions,
+  .home-cards {
+    gap: 9px !important;
+    margin-top: 14px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .feature-card,
+  .quick-card,
+  .home-card {
+    min-height: 104px !important;
+    padding: 13px 8px !important;
+    border-radius: 21px !important;
+  }
+
+  .feature-card .icon,
+  .quick-card .icon,
+  .home-card .icon {
+    width: 46px !important;
+    height: 46px !important;
+    font-size: 22px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .feature-card strong,
+  .quick-card strong,
+  .home-card strong {
+    font-size: 14px !important;
+  }
+
+  .feature-card span,
+  .quick-card span,
+  .home-card span {
+    font-size: 11px !important;
+  }
+
+  /* Bloc “Choisis ton expérience” plus haut et moins gros */
+  .pack-preview,
+  .experience-box,
+  .choose-pack,
+  .packs-preview {
+    padding: 18px !important;
+    border-radius: 24px !important;
+    margin-top: 12px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .pack-preview h2,
+  .experience-box h2,
+  .choose-pack h2,
+  .packs-preview h2 {
+    font-size: 22px !important;
+    line-height: 1.1 !important;
+    margin: 0 0 12px !important;
+    color: #ffe778 !important;
+  }
+
+  .pack-row,
+  .pack-preview-grid,
+  .experience-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .mini-pack,
+  .pack-choice,
+  .experience-card {
+    min-height: 76px !important;
+    padding: 12px 8px !important;
+    border-radius: 19px !important;
+  }
+
+  .mini-pack span,
+  .pack-choice span,
+  .experience-card span {
+    font-size: 28px !important;
+    margin-bottom: 3px !important;
+  }
+
+  .mini-pack strong,
+  .pack-choice strong,
+  .experience-card strong {
+    font-size: 14px !important;
+  }
+
+  /* Page packs : cartes moins grandes */
+  .section-head {
+    padding: 18px !important;
+    border-radius: 24px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .section-head h1 {
+    font-size: 27px !important;
+  }
+
+  .section-head p {
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+  }
+
+  .packs-grid {
+    gap: 10px !important;
+    padding-bottom: 130px !important;
+  }
+
+  .pack-card {
+    padding: 14px !important;
+    border-radius: 22px !important;
+    gap: 11px !important;
+  }
+
+  .pack-icon {
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 17px !important;
+    font-size: 24px !important;
+  }
+
+  .pack-title-line h2 {
+    font-size: 18px !important;
+  }
+
+  .pack-content p {
+    font-size: 13px !important;
+    line-height: 1.3 !important;
+    margin: 5px 0 !important;
+  }
+
+  .pack-content small {
+    font-size: 11px !important;
+  }
+
+  /* Quiz : moins massif */
+  .quiz-card {
+    padding: 18px !important;
+    border-radius: 25px !important;
+  }
+
+  .quiz-card h1 {
+    font-size: 24px !important;
+    line-height: 1.12 !important;
+    margin-bottom: 14px !important;
+  }
+
+  .question-type {
+    font-size: 11px !important;
+    padding: 6px 10px !important;
+    margin: 10px 0 !important;
+  }
+
+  .answers-grid {
+    gap: 9px !important;
+  }
+
+  .answer-btn {
+    min-height: 52px !important;
+    border-radius: 18px !important;
+    padding: 11px 12px !important;
+    font-size: 14px !important;
+  }
+
+  .answer-letter {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 12px !important;
+    font-size: 14px !important;
+  }
+
+  .feedback-card {
+    padding: 15px !important;
+    border-radius: 20px !important;
+  }
+
+  .feedback-card h2 {
+    font-size: 22px !important;
+  }
+
+  .feedback-card p {
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+  }
+
+  /* Infos : style pub mais moins énorme */
+  .info-ad-card {
+    padding: 20px !important;
+    border-radius: 24px !important;
+    margin-top: 14px !important;
+  }
+
+  .info-ad-card h2 {
+    font-size: 24px !important;
+    line-height: 1.1 !important;
+  }
+
+  .info-ad-card p {
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+  }
+
+  .ad-pulse {
+    font-size: 11px !important;
+    padding: 6px 10px !important;
+  }
+
+  /* Navigation bas plus fine */
+  .bottom-nav {
+    min-height: 76px !important;
+    padding-top: 8px !important;
+    padding-bottom: calc(9px + env(safe-area-inset-bottom)) !important;
+  }
+
+  .bottom-nav button {
+    min-height: 54px !important;
+    border-radius: 16px !important;
+    font-size: 10.5px !important;
+  }
+
+  .bottom-nav button span {
+    font-size: 20px !important;
+    margin-bottom: 2px !important;
+  }
+}
+
+/* Ultra compact pour petits écrans */
+@media (max-width: 390px) {
+  .logo-stage,
+  .hero-logo,
+  .logo-card,
+  .main-logo {
+    width: 118px !important;
+    height: 118px !important;
+  }
+
+  .hero-premium h1,
+  .hero h1,
+  .home-hero h1,
+  .main-title,
+  h1 {
+    font-size: 23px !important;
+  }
+
+  .hero-premium h2,
+  .hero h2,
+  .home-hero h2,
+  .headline,
+  .big-title {
+    font-size: 25px !important;
+  }
+
+  .primary-btn,
+  .start-btn,
+  .quiz-start-btn,
+  button.primary,
+  .cta-button {
+    height: 46px !important;
+    min-height: 46px !important;
+    font-size: 14px !important;
+  }
+
+  .feature-card,
+  .quick-card,
+  .home-card {
+    min-height: 96px !important;
+  }
+}
